@@ -2,10 +2,15 @@ import asyncio
 from aiohttp import ClientSession
 import timeit
 
-async def hello(url):
+a = 0
+
+async def hello(url):   # define Coroutine
     async with ClientSession() as session:
         async with session.get(url) as response:
-            r = await response.read()
+            r = await response.read()   # waiting.. until the Coroutine makes new result
+            global a
+            a = a + 1
+            print("a is ", a )
             print(r)
 
 start = timeit.default_timer()
