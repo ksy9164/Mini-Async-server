@@ -15,7 +15,7 @@ async def normal_handler(request):
     msg = msg + num
     return web.Response(text=msg)
 
-async def display_date(pidx):
+async def display_log(pidx):
     if pidx == 0 :
         while True:
             log.value += 1
@@ -25,7 +25,7 @@ async def display_date(pidx):
 async def worker_main(loop, pidx, args):
     app = web.Application()
     loop = asyncio.get_event_loop()
-    future = loop.create_task(display_date(pidx))
+    future = loop.create_task(display_log(pidx))
     app.add_routes(routes)
 
     web_handler = app.make_handler()
